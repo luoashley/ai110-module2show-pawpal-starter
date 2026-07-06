@@ -1,0 +1,50 @@
+classDiagram
+    class Owner {
+        +string name
+        +int available_minutes
+        +string preferences
+        +List~Pet~ pets
+        +add_pet(pet) void
+        +remove_pet(pet_name) void
+        +update_preferences(preferences) void
+        +get_pets() List~Pet~
+    }
+
+    class Pet {
+        +string name
+        +string species
+        +int age
+        +List~CareTask~ care_tasks
+        +add_task(task) void
+        +remove_task(task_title) void
+        +get_tasks() List~CareTask~
+        +update_info(name, species, age) void
+    }
+
+    class CareTask {
+        +string title
+        +int duration_minutes
+        +string priority
+        +string category
+        +string preferred_time
+        +bool completed
+        +update_task(title, duration, priority) void
+        +mark_complete() void
+        +is_high_priority() bool
+    }
+
+    class DailySchedule {
+        +string date
+        +int available_minutes
+        +List~CareTask~ scheduled_tasks
+        +List~CareTask~ skipped_tasks
+        +generate_plan(tasks) void
+        +add_scheduled_task(task) void
+        +skip_task(task) void
+        +explain_plan() string
+    }
+
+    Owner "1" --> "many" Pet : owns
+    Pet "1" --> "many" CareTask : has
+    DailySchedule "1" --> "many" CareTask : schedules
+    Owner "1" --> "many" DailySchedule : creates
