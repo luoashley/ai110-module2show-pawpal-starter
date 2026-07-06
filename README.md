@@ -42,23 +42,50 @@ pip install -r requirements.txt
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
 
-## 🖥️ Sample Output
+## 🖥️ Sample End-to-End CLI Script Output
 
-Terminal output from running the CLI demo (`python main.py`):
+```text
+======================================================================
+🐾 PawPal+ Advanced Algorithmic Scheduling System Demo Engine 🐾
+======================================================================
 
-```
-Today's Schedule (2026-07-05)
-Time budget: 75/90 min used
+--- 1. Verification of Chronological Sorting Engine ---
+   Morning Feast (Luna)
+   Insulin Check (Mochi)
+   Ear Treatment Drop (Mochi)
+   Glucose Screening (Luna)
+   Fur Grooming (Luna)
+   Evening run (Mochi)
 
-Scheduled:
-  07:30  Feed for Luna (10 min, high priority)
-  08:00  Morning walk for Mochi (30 min, high priority)
-  09:00  Give medication for Mochi (5 min, high priority)
-  18:00  Evening walk for Mochi (30 min, medium priority)
+--- 2. Verification of Granular Target Filtering (Luna Only) ---
+   • Found task: 'Morning Feast' assigned to Luna
+   • Found task: 'Fur Grooming' assigned to Luna
+   • Found task: 'Glucose Screening' assigned to Luna
 
-Skipped (not enough time):
-  Brush coat for Luna (20 min, low priority)
-```
+--- 3. Advanced Interval-Blocking Conflict Telemetry Report ---
+   ⚠️ Interval Block Overlap: 'Ear Treatment Drop' (09:00 to 09:20) overlaps with 'Glucose Screening' scheduled at 09:10.
+
+--- 4. Advanced Feature: Next Available Free Slot Query Locator ---
+   💡 Next 30-minute block suggestion: Starts at 09:20
+
+--- 5. Generated Core Decision Matrix Plan ---
+📅 Today's Schedule (2026-07-05)
+⏱️ Time Budget Allocation: 65/90 min utilized
+
+🚀 Scheduled Tasks (Chronological Order):
+  🔹 Morning Feast for Luna (15 min, high priority)
+  🔹 Insulin Check for Mochi (15 min, high priority)
+  🔹 Ear Treatment Drop for Mochi (20 min, high priority)
+  🔹 Glucose Screening for Luna (15 min, high priority)
+
+⚠️ Skipped Tasks (Insufficient Remaining Allocation Time):
+  ❌ Evening run for Mochi (30 min, medium priority)
+  ❌ Fur Grooming for Luna (25 min, low priority)
+
+--- 6. Storage Architecture State Persistence Sync Loop (JSON) ---
+   💾 State serialized and synced to 'pawpal_data_backup.json' successfully.
+   📂 Recovery successful! Restored Profile Name: 'Jordan' with 6 active structural task elements.
+
 
 ## 🧪 Testing PawPal+
 
@@ -73,25 +100,33 @@ pytest --cov
 Sample test output:
 
 ```
-============================= test session starts ==============================
-collected 2 items
+============================================================================= test session starts ==============================================================================
+platform darwin -- Python 3.13.12, pytest-9.0.3, pluggy-1.5.0 -- /Users/AshleyLuo1/miniconda3/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/AshleyLuo1/PycharmProjects/ai110-module2show-pawpal-starter
+plugins: anyio-4.10.0
+collected 8 items                                                                                                                                                              
 
-tests/test_pawpal.py::test_mark_complete_changes_status PASSED           [ 50%]
-tests/test_pawpal.py::test_adding_task_increases_pet_task_count PASSED   [100%]
+tests/test_pawpal.py::test_mark_complete_changes_status PASSED                                                                                                           [ 12%]
+tests/test_pawpal.py::test_adding_task_increases_pet_task_count PASSED                                                                                                   [ 25%]
+tests/test_pawpal.py::test_sorting_correctness PASSED                                                                                                                    [ 37%]
+tests/test_pawpal.py::test_filtering_logic PASSED                                                                                                                        [ 50%]
+tests/test_pawpal.py::test_recurrence_logic PASSED                                                                                                                       [ 62%]
+tests/test_pawpal.py::test_advanced_overlapping_conflict_detection PASSED                                                                                                [ 75%]
+tests/test_pawpal.py::test_find_next_available_slot PASSED                                                                                                               [ 87%]
+tests/test_pawpal.py::test_json_persistence_layer PASSED                                                                                                                 [100%]
 
-============================== 2 passed in 0.04s ===============================
+============================================================================== 8 passed in 0.02s =============================================================================
 ```
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
-
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `DailySchedule.sort_by_time()` | Automatically parses `HH:MM` timestamps to guarantee chronological order. |
+| Filtering | `DailySchedule.filter_tasks()` | Allows granular retrieval of scheduling arrays by completion criteria or specific pet names. |
+| Conflict handling | `DailySchedule.detect_conflicts()` | Looks for identical preferred times and alerts users without crashing the application flow. |
+| Recurring tasks | `CareTask.next_occurrence()` | Automatically instantiates a fresh task instance shifted by `timedelta` (1 day or 1 week) when completed. |
 
 ## 📸 Demo Walkthrough
 

@@ -29,55 +29,39 @@ I did not adopt every suggestion. The assistant also flagged that `remove_task`/
 ## 2. Scheduling Logic and Tradeoffs
 
 **a. Constraints and priorities**
-
-- What constraints does your scheduler consider (for example: time, priority, preferences)?
-- How did you decide which constraints mattered most?
+- **Constraints Considered**: Total remaining available minutes constraint, absolute task priority tier rank, short-job-first task duration sorting, and preferred operational execution times.
+- **Decision Engine Criterion**: Priorities dictate core safety metrics (e.g., medical interventions or feeding tasks must trump a casual grooming cycle). Thus, priority rank acts as the foundational ordering parameter, and short task lengths split ties to maximize total operations accomplished.
 
 **b. Tradeoffs**
-
-- Describe one tradeoff your scheduler makes.
-- Why is that tradeoff reasonable for this scenario?
-
----
+- **Tradeoff Implemented**: Time conflicts flag basic exact matches rather than checking for overlapping blocks using real math interval structures (such as checking if an execution window runs into another task).
+- **Reasoning**: It keeps the system lightweight and responsive while providing an clear reminder to the user to balance their calendar view manually.
 
 ## 3. AI Collaboration
 
 **a. How you used AI**
-
-- How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
-- What kinds of prompts or questions were most helpful?
+- **Usage Strategy**: AI was leveraged to generate code templates for handling complex edge cases inside Python lists, draft the Mermaid syntax layout, and build the Pytest assertions.
+- **Highly Effective Prompts**: *"Show me how to sort strings formatted like HH:MM using a concise Python lambda function key without requiring datetime parsing overhead."*
 
 **b. Judgment and verification**
-
-- Describe one moment where you did not accept an AI suggestion as-is.
-- How did you evaluate or verify what the AI suggested?
-
----
+- **Modified Suggestion**: The AI suggested using complex external libraries like `marshmallow` or `pydantic` to write the JSON data structures, but I decided that clean native dataclass methods kept the dependencies simpler and the application easier to debug.
 
 ## 4. Testing and Verification
 
 **a. What you tested**
-
-- What behaviors did you test?
-- Why were these tests important?
+- **Behaviors Covered**: Chronological sort order formatting, dynamic pet name filtration criteria, next occurrence task generator offsets via timedelta calculations, and conflict telemetry warnings.
+- **Importance**: Verifying edge boundaries prevents critical pet care requirements from slipping out of visibility during resource optimization routines.
 
 **b. Confidence**
-
-- How confident are you that your scheduler works correctly?
-- What edge cases would you test next if you had more time?
-
----
+- **Confidence Rating**: 5/5
+- **Next Horizon Testing Areas**: Testing cross-over boundary dates (e.g., month-end and leap-year transitions) for recurring task updates.
 
 ## 5. Reflection
 
 **a. What went well**
-
-- What part of this project are you most satisfied with?
+- Combining the automated scheduling logic seamlessly with Streamlit's reactive `session_state` was clean and highly satisfying.
 
 **b. What you would improve**
-
-- If you had another iteration, what would you improve or redesign?
+- Implement full interval parsing logic so that tasks check for true block overlaps (e.g., a 60-minute walk at 08:30 conflict-flags a grooming task starting at 09:00).
 
 **c. Key takeaway**
-
-- What is one important thing you learned about designing systems or working with AI on this project?
+- I learned that acts as the lead architect means clearly mapping out data flow, interface requirements, and system relationships *before* writing code, ensuring the AI assistant acts as an efficient coding partner rather than a replacement for engineering design.
